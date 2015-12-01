@@ -23,7 +23,9 @@ Vagrant.configure('2') do |config|
   SHELL
 
   config.vm.provision 'shell', privileged: false, inline: <<-SHELL
-    (cd trema; git clone https://github.com/trema/routing_switch.git)
-    (cd trema/routing_switch; bundle install --path=vendor/bundle)
+    cd trema
+    test -d repeater_hub || git clone https://github.com/trema/repeater_hub.git
+    cd repeater_hub
+    bundle install --path=vendor/bundle --binstubs
   SHELL
 end
