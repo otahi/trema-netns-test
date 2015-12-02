@@ -1,9 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/trusty64'
+  exclude_path = %w(vendor .bundle .vagrant bin)
   config.vm.synced_folder('.', '/home/vagrant/trema',
-                          type: 'rsync', rsync__exclude: 'vendor')
+                          type: 'rsync',
+                          rsync__exclude: exclude_path)
 
   if Vagrant.has_plugin?('vagrant-proxyconf') && ENV['http_proxy']
     config.proxy.http     = ENV['http_proxy']
@@ -24,8 +27,7 @@ Vagrant.configure('2') do |config|
 
   config.vm.provision 'shell', privileged: false, inline: <<-SHELL
     cd trema
-    test -d repeater_hub || git clone https://github.com/trema/repeater_hub.git
-    cd repeater_hub
-    bundle install --path=vendor/bundle --binstubs
+    bundle install --path=vendor/bundle
+    bundle install --binstubs
   SHELL
 end
