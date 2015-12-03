@@ -3,7 +3,7 @@
 
 Vagrant.configure('2') do |config|
   config.vm.box = 'ubuntu/trusty64'
-  exclude_path = %w(vendor .bundle .vagrant bin)
+  exclude_path = %w(vendor .bundle .vagrant bin Gemfile.lock)
   config.vm.synced_folder('.', '/home/vagrant/trema',
                           type: 'rsync',
                           rsync__exclude: exclude_path)
