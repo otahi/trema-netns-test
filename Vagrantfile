@@ -23,6 +23,7 @@ Vagrant.configure('2') do |config|
     apt-get install build-essential git -y
     apt-get install openvswitch-switch -y
     gem install bundler
+    grep 'trema-test' /etc/hosts || cat /home/vagrant/trema/hosts >> /etc/hosts
   SHELL
 
   config.vm.provision 'shell', privileged: false, inline: <<-SHELL
