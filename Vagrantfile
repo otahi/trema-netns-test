@@ -19,7 +19,7 @@ Vagrant.configure('2') do |config|
     apt-get install software-properties-common
     apt-add-repository ppa:brightbox/ruby-ng -y
     apt-get update
-    apt-get install ruby2.2 ruby2.2-dev -y
+    apt-get install ruby2.2 ruby2.2-dev zlib1g-dev -y
     apt-get install build-essential git -y
     apt-get install openvswitch-switch -y
     gem install bundler
