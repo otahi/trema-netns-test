@@ -5,6 +5,5 @@ describe interface('nshost1') do
 end
 
 describe host('192.168.8.7') do
-  # ping
   it { should be_reachable }
 end
