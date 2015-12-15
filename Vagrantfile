@@ -29,6 +29,9 @@ Vagrant.configure('2') do |config|
   config.vm.provision 'shell', privileged: false, inline: <<-SHELL
     install -m 600 trema/ssh/config .ssh/
     install -m 600 trema/ssh/insecure_private_key .ssh/
+    pub_key=trema/ssh/insecure_private_key.pub
+    auth_keys=.ssh/authorized_keys
+    grep "`cat $pub_key`" $auth_keys || cat $pub_key >> $auth_keys
     cd trema
     bundle install --path=vendor/bundle
     bundle install --binstubs
