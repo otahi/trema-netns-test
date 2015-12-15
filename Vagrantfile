@@ -22,7 +22,7 @@ Vagrant.configure('2') do |config|
     apt-get install ruby2.2 ruby2.2-dev zlib1g-dev -y
     apt-get install build-essential git -y
     apt-get install openvswitch-switch -y
-    gem install bundler
+    gem install bundler -v 1.10.6
     grep 'trema-test' /etc/hosts || cat /home/vagrant/trema/hosts >> /etc/hosts
   SHELL
 
